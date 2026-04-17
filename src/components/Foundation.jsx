@@ -1,65 +1,87 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Database, Zap, Activity, Globe } from 'lucide-react';
+import { Database, Zap, Globe } from 'lucide-react';
 
 const Foundation = () => {
   return (
-    <div className="max-w-7xl w-full">
-      <div className="text-center mb-16">
-        <span className="text-accent-cyan font-bold tracking-widest text-xs mb-4 block uppercase">2. FOUNDATION</span>
-        <h2 className="text-5xl font-black mb-6">Low-Latency <span className="text-accent-cyan">Awareness</span></h2>
-        <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-          The fuel of LUMINANCE. BigQuery & Dataflow process trillions of external signals to create a real-time pulse of human desire.
-        </p>
-      </div>
+    <div className="container">
+      <div className="split-layout reversed">
+        <div className="visual-content">
+          <div className="glass-panel p-2 overflow-hidden aspect-video relative">
+            <div className="h-full bg-black/60 rounded-[18px] relative overflow-hidden flex items-center justify-center border border-white/5">
+                {/* Data Flow Visualization */}
+                <div className="absolute inset-0 opacity-30">
+                  {[...Array(15)].map((_, i) => (
+                    <motion.div 
+                      key={i}
+                      className="absolute h-[1px] bg-accent-cyan"
+                      style={{ 
+                        top: `${Math.random() * 100}%`, 
+                        left: 0, 
+                        width: '100%',
+                        opacity: Math.random() * 0.5
+                      }}
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ duration: 3 + Math.random() * 4, repeat: Infinity, ease: 'linear' }}
+                    />
+                  ))}
+                </div>
+                
+                <div className="z-10 text-center">
+                  <div className="relative mb-6">
+                    <Zap className="text-accent-cyan animate-pulse mx-auto" size={56} />
+                    <div className="absolute inset-0 blur-xl bg-accent-cyan/20 animate-pulse"></div>
+                  </div>
+                  <p className="font-mono text-[10px] tracking-[0.4em] text-accent-cyan uppercase font-bold">Live Pulse Authentication</p>
+                </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        {[
-          { icon: <Database />, title: "BigQuery Streaming", val: "1.2 PB/s", desc: "Real-time ingestion of IoT shelf sensors and weather patterns." },
-          { icon: <Activity />, title: "Sentiment Synthesis", val: "99.8%", desc: "Direct mapping of social trends to localized inventory needs." },
-          { icon: <Globe />, title: "Geospatial Nodes", val: "42,000+", desc: "Micro-fulfillment coordination across urban orbits." }
-        ].map((stat, i) => (
-          <motion.div 
-            key={i}
-            className="p-8 glass-panel group hover:border-accent-cyan transition-colors"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-          >
-            <div className="text-accent-cyan mb-6 group-hover:scale-110 transition-transform inline-block">
-              {React.cloneElement(stat.icon, { size: 40 })}
+                {/* Grid Overlay */}
+                <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
             </div>
-            <h3 className="text-xl font-bold mb-2">{stat.title}</h3>
-            <p className="text-4xl font-black text-white mb-4 tracking-tighter">{stat.val}</p>
-            <p className="text-sm text-text-secondary line-height-relaxed">{stat.desc}</p>
-          </motion.div>
-        ))}
-      </div>
+          </div>
+          
+          <div className="grid grid-cols-3 gap-4 mt-6">
+            {[
+              { val: "1.2 PB/s", label: "Throughput" },
+              { val: "99.9%", label: "Accuracy" },
+              { val: "12ms", label: "Latency" }
+            ].map((stat, i) => (
+              <div key={i} className="p-4 glass-panel text-center">
+                <p className="text-xl font-black mb-1 text-white">{stat.val}</p>
+                <p className="text-[10px] uppercase tracking-widest text-text-secondary font-bold">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-      <div className="mt-12 p-1 glass-panel overflow-hidden relative">
-        <div className="h-64 bg-black/50 relative overflow-hidden flex items-center justify-center">
-            {/* Simulated Data Streams */}
-            <div className="absolute inset-0 opacity-20">
-              {[...Array(20)].map((_, i) => (
-                <motion.div 
-                  key={i}
-                  className="absolute h-px bg-accent-cyan"
-                  style={{ 
-                    top: `${Math.random() * 100}%`, 
-                    left: 0, 
-                    width: '100%',
-                    opacity: Math.random()
-                  }}
-                  animate={{ x: ['-100%', '100%'] }}
-                  transition={{ duration: 2 + Math.random() * 5, repeat: Infinity, ease: 'linear' }}
-                />
-              ))}
-            </div>
-            
-            <div className="z-10 text-center">
-              <Zap className="text-accent-cyan mb-4 animate-pulse mx-auto" size={48} />
-              <p className="font-mono text-xs tracking-widest text-accent-cyan italic">LIVE_DATA_STREAM_AUTH_SUCCESS</p>
-            </div>
+        <div className="text-content">
+          <span className="section-label text-accent-cyan">2. FOUNDATION</span>
+          <h2 className="font-black">Low-Latency <br /><span className="text-accent-cyan">Awareness</span></h2>
+          <p className="description mb-10">
+            Trillions of signals processed in real-time. BigQuery & Dataflow create a predictive fuel that maps global human intent to localized micro-orbits.
+          </p>
+
+          <div className="space-y-6">
+            {[
+              { icon: <Database size={24} aria-hidden="true" />, title: "BigQuery Streaming", desc: "Ingesting signals from IoT sensors and global weather nodes." },
+              { icon: <Globe size={24} aria-hidden="true" />, title: "Geospatial Nodes", desc: "Micro-fulfillment coordination across 42,000+ urban fulfillment centers." }
+            ].map((node, i) => (
+              <div 
+                key={i} 
+                className="flex gap-6 items-start p-8 glass-panel group transition-all"
+                role="article"
+                aria-labelledby={`foundation-node-${i}`}
+              >
+                <div className="text-accent-cyan mt-1 group-hover:scale-110 transition-transform">
+                  {node.icon}
+                </div>
+                <div>
+                  <h4 id={`foundation-node-${i}`} className="font-black mb-2 uppercase tracking-wide text-sm">{node.title}</h4>
+                  <p className="text-sm text-text-secondary leading-relaxed">{node.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
